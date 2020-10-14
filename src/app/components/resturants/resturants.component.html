@@ -1,0 +1,47 @@
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="col-md-12">
+            <div class="card card-plain">
+              <div class="card-header card-header-danger">
+                <h4 class="card-title mt-0">Resturants</h4>
+                <p class="card-category">Epicure Resturants</p>
+                <img src="/assets/img/new_logo.png" (click)="add()">
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead class="">
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Cheff</th>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let res of resturants">
+                        <td>
+                          {{ res._id }}
+                        </td>
+                        <td>
+                          {{ res.name }}
+                        </td>
+                        <td>
+                          {{ res.chef }}
+                        </td>
+                        <td>
+                            <img
+                              src="/assets/img/angular.png"
+                              style="width: 50px; height: 50px"
+                              (click)="removeResturant(res)"
+                            />
+                          </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
+</div>

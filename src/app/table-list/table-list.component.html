@@ -1,0 +1,129 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Dishes</h4>
+            <p class="card-category">Here is all Epicure Dishes</p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="text-primary">
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Resturant</th>
+                  <th>Description</th>
+                  <th>Price</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let dish of dishes">
+                    <td>
+                      {{ dish._id }}
+                    </td>
+                    <td>
+                      {{ dish.name }}
+                    </td>
+                    <td>
+                      {{ dish.resturant.name }}
+                    </td>
+                    <td>
+                      {{ dish.description }}
+                    </td>
+                    <td class="text-primary">${{ dish.price }}</td>
+                    <td>
+                        <img
+                          src="/assets/img/angular.png"
+                          style="width: 50px; height: 50px"
+                          (click)="removeChef(dish)"
+                        />
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="card card-plain">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title mt-0">Resturants</h4>
+            <p class="card-category">Epicure Resturants</p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead class="">
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Cheff</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let res of resturants">
+                    <td>
+                      {{ res._id }}
+                    </td>
+                    <td>
+                      {{ res.name }}
+                    </td>
+                    <td>
+                      {{ res.chef }}
+                    </td>
+                    <td>
+                        <img
+                          src="/assets/img/angular.png"
+                          style="width: 50px; height: 50px"
+                          (click)="removeChef(res)"
+                        />
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Chefs</h4>
+            <p class="card-category">Here is all Epicure Chefs</p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="text-primary">
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>About</th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let chef of chefs">
+                    <td>
+                      {{ chef._id }}
+                    </td>
+                    <td>
+                      {{ chef.name }}
+                    </td>
+                    <td>
+                      {{ chef.about }}
+                    </td>
+                    <td>
+                      <img
+                        src="/assets/img/angular.png"
+                        style="width: 50px; height: 50px"
+                        (click)="removeChef(chef)"
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+              <div class="card-header card-header-danger">
+                <h4 class="card-title">Dishes</h4>
+                <p class="card-category">Here is all Epicure Dishes</p>
+                <img src="/assets/img/new_logo.png" (click)="add()"> 
+            </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class="text-primary">
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Resturant</th>
+                      <th>Description</th>
+                      <th>Price</th>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let dish of dishes">
+                        <td>
+                          {{ dish._id }}
+                        </td>
+                        <td>
+                          {{ dish.name }}
+                        </td>
+                        <td>
+                          {{ dish.resturant.name? dish.resturant.name: 'stam' }}
+                        </td>
+                        <td>
+                          {{ dish.description }}
+                        </td>
+                        <td class="text-primary">${{ dish.price }}</td>
+                        <td>
+                            <img
+                              src="/assets/img/angular.png"
+                              style="width: 50px; height: 50px"
+                              (click)="removeDish(dish)"
+                            />
+                          </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
+</div>
