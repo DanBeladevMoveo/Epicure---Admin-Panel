@@ -62,16 +62,17 @@ export class AppService {
     const { _id } = chef;
     return this.http.delete<any>(`${this.catalog_url}/chef/${_id}`);
   }
-  addChef(): Observable<any> {
-    const body = {
-      name: "Bibi Habibi",
-      about:'Im super Bibi',
-      image: "/assets/epicure.png",
-    };
-    return this.http.post<any>(`${this.catalog_url}/chef`, body);
+  addChef(chefinfo): Observable<any> {
+    return this.http.post<any>(`${this.catalog_url}/chef`, chefinfo);
   }
 
   login(userinfo): Observable<any> {
     return this.http.post<any>(`${this.base_url}/users/login`, userinfo);
+  }
+
+  editChef(chefid,chefinfo): Observable<any> {
+    console.log(chefinfo);
+    // return of(chefinfo);
+    return this.http.put<any>(`${this.catalog_url}/chef/${chefid}`, chefinfo);
   }
 }

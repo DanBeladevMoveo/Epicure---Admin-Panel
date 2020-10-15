@@ -1,0 +1,72 @@
+<mat-card class="product">
+  <mat-card-header>
+    <div mat-card-avatar class="header"></div>
+    <mat-card-title class="title">Chef Form</mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <form
+      [name]="chefForm"
+      [formGroup]="chefForm"
+      class="form-container"
+      (ngSubmit)="submit()"
+    >
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          formControlName="name"
+          placeholder="Chef Name"
+        />
+        <mat-error
+          *ngIf="chefForm.dirty && chefForm.controls.name.errors?.required"
+        >
+          Please insert Chef Name</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          formControlName="about"
+          placeholder="About"
+        />
+        <mat-error
+          *ngIf="chefForm.dirty && chefForm.controls.about.errors?.required"
+        >
+          Please insert data about Chef</mat-error
+        >
+        <mat-error
+          *ngIf="chefForm.dirty && chefForm.controls.about.errors?.maxlength"
+        >
+          About must be maximum 1000 characters</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          formControlName="image"
+          placeholder="ImageUrl"
+        />
+        <mat-error
+          *ngIf="chefForm.dirty && chefForm.controls.image.errors?.required"
+        >
+          Please insert Chef Image</mat-error
+        >
+      </mat-form-field>
+      <button
+        mat-button
+        color="primary"
+        class="buyBtn"
+        [disabled]="!chefForm.valid"
+      >
+        SAVE
+      </button>
+      <mat-error *ngIf="error"> {{ error }}</mat-error>
+    </form>
+  </mat-card-content>
+  <mat-card-footer>
+    <mat-card-actions class="footer"> </mat-card-actions>
+  </mat-card-footer>
+</mat-card>

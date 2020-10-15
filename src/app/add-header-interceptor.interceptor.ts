@@ -3,7 +3,7 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor, HttpErrorResponse
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -18,6 +18,20 @@ export class AddHeaderInterceptorInterceptor implements HttpInterceptor {
     const clonedRequest = request.clone({ headers: request.headers.set('Authorization', `Bearer ${token}`) });
 
     // Pass the cloned request instead of the original request to the next handle
-    return next.handle(clonedRequest);
+    return next.handle(clonedRequest).toPromise()
+    .catch(err => {
+      // onError
+      console.log(err);
+      if (err instanceof HttpErrorResponse) {
+          console.log(err.status);
+          console.log(err.statusText);
+          if (err.status === 401) {
+            localStorage.removeItem('login');
+            localStorage.removeItem('token');
+              window.location.href = "/login";
+          }
+      }
+      return Observable.throw(err);
+  }) as any;
   }
 }

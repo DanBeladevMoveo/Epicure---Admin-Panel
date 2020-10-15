@@ -1,0 +1,100 @@
+<mat-card class="product">
+  <mat-card-header>
+    <div mat-card-avatar class="header"></div>
+    <mat-card-title class="title"
+      >Dish Form</mat-card-title
+    >
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <form
+      [name]="dishForm"
+      [formGroup]="dishForm"
+      class="form-container"
+      (ngSubmit)="submit()"
+    >
+      <mat-form-field>
+        <input
+          matInput
+          type="email"
+          formControlName="email"
+          placeholder="Email"
+        />
+        <mat-error
+          *ngIf="
+            dishForm.dirty &&
+            dishForm.controls.email.errors &&
+            dishForm.controls.email.errors.required
+          "
+        >
+          Please insert Input</mat-error
+        >
+        <!-- <mat-error
+            *ngIf="
+              dishForm.dirty &&
+              dishForm.controls.email.errors &&
+              !dishForm.controls.email.errors.forbiddenEmail.valid
+            "
+          >
+            Incorrect Email</mat-error
+          > -->
+        <mat-error
+          *ngIf="
+            dishForm.dirty &&
+            dishForm.controls.email.errors &&
+            dishForm.controls.email.errors.email
+          "
+        >
+          Email Format Incorrect</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          type="password"
+          formControlName="password"
+          placeholder="Password"
+        />
+        <mat-error
+          *ngIf="
+            dishForm.dirty &&
+            dishForm.controls.password.errors &&
+            dishForm.controls.password.errors.required
+          "
+        >
+          Please insert Input</mat-error
+        >
+        <mat-error
+          *ngIf="
+            dishForm.dirty &&
+            dishForm.controls.password.errors &&
+            dishForm.controls.password.errors.minlength
+          "
+        >
+          Password must be at least 3 characters</mat-error
+        >
+        <!-- <mat-error
+            *ngIf="
+              dishForm.dirty &&
+              dishForm.controls.password.errors &&
+              !dishForm.controls.password.errors.forbiddenPassword.valid
+            "
+          >
+            Incorrect password</mat-error
+          > -->
+      </mat-form-field>
+      <button
+        mat-button
+        color="primary"
+        class="buyBtn"
+        [disabled]="!dishForm.valid"
+      >
+        Login
+      </button>
+      <mat-error *ngIf="error"> {{ error }}</mat-error>
+    </form>
+  </mat-card-content>
+  <mat-card-footer>
+    <mat-card-actions class="footer"> </mat-card-actions>
+  </mat-card-footer>
+</mat-card>

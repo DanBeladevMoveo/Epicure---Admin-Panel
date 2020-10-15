@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'app/services/app.service';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from '../login/login.component';
+import { AddDishComponent } from '../add-dish/add-dish.component';
+import { AddChefComponent } from '../add-chef/add-chef.component';
+
 
 @Component({
   selector: 'app-chefs',
@@ -9,7 +14,7 @@ import { AppService } from 'app/services/app.service';
 export class ChefsComponent implements OnInit {
 
   chefs=[];
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService, private dialog: MatDialog ) { }
 
   ngOnInit() {
     this.appService.getChefs().subscribe(res => {
@@ -27,10 +32,13 @@ export class ChefsComponent implements OnInit {
     
   }
 
+  editChef(chef){
+    this.dialog.open(AddChefComponent,{
+      data: chef
+    });
+  }
+
   add(){
-    this.appService.addChef().subscribe(res=>{
-      console.log(res);
-      this.chefs.push(res);
-    })
+       this.dialog.open(AddChefComponent);
   }
 }

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
@@ -24,6 +24,7 @@ import { AddHeaderInterceptorInterceptor } from './add-header-interceptor.interc
     HttpClientModule,
     ComponentsModule,
     RouterModule,
+    MatDialogModule,
     AppRoutingModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
@@ -32,7 +33,6 @@ import { AddHeaderInterceptorInterceptor } from './add-header-interceptor.interc
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

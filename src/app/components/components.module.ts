@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { AddChefComponent } from './add-chef/add-chef.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -9,6 +11,7 @@ import { DishesComponent } from './dishes/dishes.component';
 import { ResturantsComponent } from './resturants/resturants.component';
 import { ChefsComponent } from './chefs/chefs.component';
 import { LoginComponent } from './login/login.component';
+import { AddDishComponent } from './add-dish/add-dish.component';
 // material ui
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -20,7 +23,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   imports: [
     CommonModule,
@@ -31,7 +34,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatCardModule,
     MatDividerModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule
   ],
   declarations: [
     FooterComponent,
@@ -40,7 +44,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DishesComponent,
     ResturantsComponent,
     ChefsComponent,
-    LoginComponent
+    LoginComponent,
+    AddDishComponent,
+    AddChefComponent
   ],
   exports: [
     FooterComponent,
