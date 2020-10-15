@@ -1,71 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
-import {
-  Validators,
-  ValidatorFn,
-  AbstractControl,
-  FormBuilder,
-} from '@angular/forms';
-import { Router } from '@angular/router';
-
-// import { User } from '../../models/user';
+import { Validators, FormBuilder } from "@angular/forms";
+import { Router } from "@angular/router";
+import { AppService } from "app/services/app.service";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
-  user = { email: '', password: '' };
-  constructor(private router: Router, private fb: FormBuilder) {}
+  user = { email: "", password: "" };
+  error='';
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private appService: AppService
+  ) {}
 
   loginForm = this.fb.group({
-    email: [
-      'test@moveo.group',
-      Validators.compose([
-        Validators.required,
-        Validators.email,
-        this.checkEmail(),
-      ]),
-    ],
+    email: ["", Validators.compose([Validators.required, Validators.email])],
     password: [
-      '123',
-      Validators.compose([
-        Validators.required,
-        Validators.minLength(3),
-        this.checkPassword(),
-      ]),
+      "",
+      Validators.compose([Validators.required, Validators.minLength(3)]),
     ],
   });
 
   ngOnInit(): void {
-    const islogin = localStorage.getItem('login');
+    const islogin = localStorage.getItem("login");
     if (islogin) {
-      this.router.navigateByUrl('dashboard');
+      this.router.navigateByUrl("dashboard");
     }
   }
 
   submit(): void {
-    alert(`${this.loginForm.value.email} Logged In`);
-    this.user = this.loginForm.value;
-    localStorage.setItem('login', 'true');
-    this.router.navigateByUrl('dashboard');
-  }
-  checkEmail(): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } | null => {
-      const forbidden = control.value !== 'test@moveo.group';
-      return forbidden
-        ? { forbiddenEmail: { value: control.value, valid: false } }
-        : null;
-    };
-  }
-
-  checkPassword(): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } | null => {
-      const forbidden = control.value !== '123';
-      return forbidden
-        ? { forbiddenPassword: { value: control.value, valid: false } }
-        : null;
-    };
+    this.appService.login(this.loginForm.value).subscribe(
+      (res) => {console.log(res);
+            localStorage.setItem("login", "true");
+            localStorage.setItem('token',res.token)
+            this.router.navigateByUrl("dashboard");
+      },
+      (err) => {
+        console.log(err);
+        this.error = err.error?.message || err.statusText
+      }
+    );
   }
 }
