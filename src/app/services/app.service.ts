@@ -23,13 +23,15 @@ export class AppService {
     return this.http.get<any>(`${this.catalog_url}/chef`);
   }
 
-  addResturant(): Observable<any> {
-    const body = {
-      name: "Dan",
-      chef: "5f86c58f9c4a1b978399d1dc",
-      url: "/assets/epicure.png",
-    };
-    return this.http.post<any>(`${this.catalog_url}/resturant`, body);
+  addResturant(resturantinfo): Observable<any> {
+    console.log('create res',resturantinfo);
+    
+    return this.http.post<any>(`${this.catalog_url}/resturant`, resturantinfo);
+  }
+
+  editResturant(resId, resinfo):Observable<any> {
+    console.log(resinfo);
+    return this.http.put<any>(`${this.catalog_url}/resturant/${resId}`, resinfo);
   }
   addDish(): Observable<any> {
     const body = {

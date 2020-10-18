@@ -13,6 +13,7 @@ import { ChefsComponent } from './chefs/chefs.component';
 import { LoginComponent } from './login/login.component';
 import { AddDishComponent } from './add-dish/add-dish.component';
 // material ui
+import {MatSelectModule} from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSliderModule } from '@angular/material/slider';
@@ -24,6 +25,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { AddResturantComponent } from './add-resturant/add-resturant.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -35,7 +37,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatDividerModule,
     FormsModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule
   ],
   declarations: [
     FooterComponent,
@@ -46,7 +49,8 @@ import { MatIconModule } from '@angular/material/icon';
     ChefsComponent,
     LoginComponent,
     AddDishComponent,
-    AddChefComponent
+    AddChefComponent,
+    AddResturantComponent
   ],
   exports: [
     FooterComponent,

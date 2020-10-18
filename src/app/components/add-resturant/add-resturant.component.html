@@ -1,0 +1,76 @@
+<mat-card class="product">
+    <mat-card-header>
+      <div mat-card-avatar class="header"></div>
+      <mat-card-title class="title">Resturant Form</mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <form
+        [name]="resturantForm"
+        [formGroup]="resturantForm"
+        class="form-container"
+        (ngSubmit)="submit()"
+      >
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            formControlName="name"
+            placeholder="Resturant Name"
+          />
+          <mat-error
+            *ngIf="resturantForm.dirty && resturantForm.controls.name.errors?.required"
+          >
+            Please insert Resturant Name</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Chef</mat-label>
+            <mat-select (valueChange)="chefChanged($event)" formControlName="chef">
+              <mat-option *ngFor="let chef of chefs" [value]="chef._id">
+                {{chef.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        <!-- <mat-form-field>
+          <input
+            matInput
+            type="text"
+            formControlName="chef"
+            placeholder="Chef"
+          />
+          <mat-error
+            *ngIf="resturantForm.dirty && resturantForm.controls.chef.errors?.required"
+          >
+            Please insert data chef Resturant</mat-error
+          >
+        </mat-form-field> -->
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            formControlName="url"
+            placeholder="ImageUrl"
+          />
+          <mat-error
+            *ngIf="resturantForm.dirty && resturantForm.controls.url.errors?.required"
+          >
+            Please insert Resturant Image</mat-error
+          >
+        </mat-form-field>
+        <button
+          mat-button
+          color="primary"
+          class="buyBtn"
+          [disabled]="!resturantForm.valid"
+        >
+          SAVE
+        </button>
+        <mat-error *ngIf="error"> {{ error }}</mat-error>
+      </form>
+    </mat-card-content>
+    <mat-card-footer>
+      <mat-card-actions class="footer"> </mat-card-actions>
+    </mat-card-footer>
+  </mat-card>
+  

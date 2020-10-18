@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'app/services/app.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddResturantComponent } from '../add-resturant/add-resturant.component';
 
 @Component({
   selector: 'app-resturants',
@@ -9,7 +11,7 @@ import { AppService } from 'app/services/app.service';
 export class ResturantsComponent implements OnInit {
   resturants =[] ;
 
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService,private dialog: MatDialog ) { }
 
   ngOnInit() {
     this.appService.getResturants().subscribe(res => {
@@ -24,12 +26,15 @@ export class ResturantsComponent implements OnInit {
     })
     
   }
+  editResturant(resturant){
+    console.log(resturant);
+    this.dialog.open(AddResturantComponent,{
+      data: resturant
+    });
+  }
+    
 
   add(){
-    this.appService.addResturant().subscribe(res=>{
-      console.log(res);
-      this.resturants.push(res);
-    })
-    
+    this.dialog.open(AddResturantComponent);
   }
 }
