@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { environment } from "environments/environment";
 import { Observable } from "rxjs";
 
 
@@ -7,7 +8,7 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class AppService {
-  base_url = "http://localhost:3000";
+  base_url = environment.base_url;
   catalog_url = `${this.base_url}/catalog`;
   constructor(private http: HttpClient) {}
 
